@@ -1,0 +1,10 @@
+insert into tb_usuario (id, nome, email, senha) values (1, 'Reinald', 'rollivier0@lycos.com', 'obVd5GQZ');
+insert into tb_usuario (id, nome, email, senha) values (2, 'Rik', 'rmckinnon1@tinypic.com', 'hImLegxJaDm');
+insert into tb_usuario (id, nome, email, senha) values (3, 'Titus', 'tshegog2@usa.gov', '6wznaVDnL');
+insert into tb_usuario (id, nome, email, senha) values (4, 'Cassandre', 'charston3@blog.com', 'RwF5zGCg9a');
+insert into tb_usuario (id, nome, email, senha) values (5, 'Birgitta', 'brogeon4@joomla.org', 'TqQJYC5etEp');
+insert into tb_usuario (id, nome, email, senha) values (6, 'Merell', 'mlukesch5@thetimes.co.uk', 'k8wcfCf0b08F');
+insert into tb_usuario (id, nome, email, senha) values (7, 'Koral', 'kmchardy6@mozilla.com', 'yfaEKOZo72c8');
+insert into tb_usuario (id, nome, email, senha) values (8, 'Marge', 'mcreboe7@wired.com', '5RyODWcFHqI');
+insert into tb_usuario (id, nome, email, senha) values (9, 'Phillipp', 'ppennrington8@yandex.ru', 'mbL2ROL');
+insert into tb_usuario (id, nome, email, senha) values (10, 'Tandi', 'tyitzovicz9@instagram.com', '9rOyCYhydN');
