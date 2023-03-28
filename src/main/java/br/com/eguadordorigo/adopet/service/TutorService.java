@@ -3,16 +3,15 @@ package br.com.eguadordorigo.adopet.service;
 import br.com.eguadordorigo.adopet.model.Tutor;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface TutorService {
-    Tutor criarTutor(Tutor tutor);
+    Tutor criar(Tutor tutor);
 
-    Optional<Tutor> buscarUsuarioPorId(Long id);
+    Tutor listarPorId(Long id);
 
-    List<Tutor> buscarTodos();
+    List<Tutor> listarTodos();
 
-    Tutor atualizarUsuario(Tutor tutor);
+    Tutor atualizar(Tutor tutor);
 
-    void deleteUsuario(Long id);
+    void deletar(Long id);
 }

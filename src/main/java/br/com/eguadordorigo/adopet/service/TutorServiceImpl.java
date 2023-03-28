@@ -17,22 +17,22 @@ public class TutorServiceImpl implements TutorService {
     }
 
     @Override
-    public Tutor criarTutor(Tutor tutor) {
+    public Tutor criar(Tutor tutor) {
         return tutorRepository.save(tutor);
     }
 
     @Override
-    public Optional<Tutor> buscarUsuarioPorId(Long id) {
-        return tutorRepository.findById(id);
+    public Tutor listarPorId(Long id) {
+        return tutorRepository.findById(id).orElseThrow(()-> new RuntimeException("Tutor não encontrado"));
     }
 
     @Override
-    public List<Tutor> buscarTodos() {
+    public List<Tutor> listarTodos() {
         return tutorRepository.findAll();
     }
 
     @Override
-    public Tutor atualizarUsuario(Tutor tutor) {
+    public Tutor atualizar(Tutor tutor) {
         Tutor usr = tutorRepository.findById(tutor.getId()).orElseThrow(()-> new RuntimeException("Não foi possível encontrar usuário."));
         usr.setNome(tutor.getNome());
         usr.setEmail(tutor.getEmail());
@@ -42,7 +42,7 @@ public class TutorServiceImpl implements TutorService {
     }
 
     @Override
-    public void deleteUsuario(Long id) {
+    public void deletar(Long id) {
         tutorRepository.deleteById(id);
     }
 }
