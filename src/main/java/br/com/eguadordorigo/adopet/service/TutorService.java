@@ -1,10 +1,12 @@
-package br.com.eguadordorigo.adopet;
+package br.com.eguadordorigo.adopet.service;
+
+import br.com.eguadordorigo.adopet.model.Tutor;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface TutorService {
-    Tutor criarUsuario(Tutor tutor);
+    Tutor criarTutor(Tutor tutor);
 
     Optional<Tutor> buscarUsuarioPorId(Long id);
 

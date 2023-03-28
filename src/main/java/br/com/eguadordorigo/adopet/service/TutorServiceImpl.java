@@ -1,5 +1,7 @@
-package br.com.eguadordorigo.adopet;
+package br.com.eguadordorigo.adopet.service;
 
+import br.com.eguadordorigo.adopet.model.Tutor;
+import br.com.eguadordorigo.adopet.repository.TutorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +17,7 @@ public class TutorServiceImpl implements TutorService {
     }
 
     @Override
-    public Tutor criarUsuario(Tutor tutor) {
+    public Tutor criarTutor(Tutor tutor) {
         return tutorRepository.save(tutor);
     }
 

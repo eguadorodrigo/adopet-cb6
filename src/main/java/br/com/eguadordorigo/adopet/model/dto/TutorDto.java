@@ -1,29 +1,18 @@
-package br.com.eguadordorigo.adopet;
+package br.com.eguadordorigo.adopet.model.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
-@Entity(name = "tutor")
-@Table(name = "tb_tutor", schema = "CB6")
-public class Tutor {
+public class TutorDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nome", nullable = false)
+
     @NotEmpty(message = "O campo de nome é obrigatório")
     private String nome;
-
-    @Column(name = "email", nullable = false)
-    @NotEmpty(message = "O campo de email é obrigatório")
+    @Email(message = "O campo de email precisa ser válido")
     private String email;
 
-    @Column(name = "senha", nullable = false)
     @NotEmpty(message = "O campo de senha é obrigatório")
     private String senha;
 
@@ -61,12 +50,11 @@ public class Tutor {
 
     @Override
     public String toString() {
-        return "Usuario{" +
+        return "TutorDto{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
                 '}';
     }
-
 }
