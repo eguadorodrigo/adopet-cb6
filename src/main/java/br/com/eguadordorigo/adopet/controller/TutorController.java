@@ -5,7 +5,8 @@ import br.com.eguadordorigo.adopet.model.dto.TutorDto;
 import br.com.eguadordorigo.adopet.service.TutorService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.http.HttpStatus;
@@ -24,44 +25,39 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tutores")
+@Tag(name = "Recurso de Tutores", description = "Operações que são possíveis dentro do escopo de Tutor")
 public class TutorController {
-
     private TutorService tutorService;
-
-    private ObjectMapper mapper;
-
-    private ObjectWriter ow;
-
 
     public TutorController(TutorService tutorService, ObjectMapper mapper) {
         this.tutorService = tutorService;
-        this.mapper = mapper;
-        this.ow = mapper.writer().withDefaultPrettyPrinter();
     }
 
+    @Operation(description = "Recurso para criação de um tutor", summary = "Recurso para criação de um tutor")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity criar(@Valid @RequestBody TutorDto tutorDto) throws JsonProcessingException {
-        Tutor tutor = mapper.readValue(ow.writeValueAsString(tutorDto), Tutor.class);
-        return ResponseEntity.ok(tutorService.criar(tutor));
+        return ResponseEntity.ok(tutorService.criar(tutorDto));
     }
 
+    @Operation(description = "Recurso para buscar todos os tutores cadastrados", summary = "Recurso para buscar todos os tutores cadastrados")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Tutor>> listarTodos(){
-        List<Tutor> tutors = tutorService.listarTodos();
-        return new ResponseEntity<>(tutors, HttpStatus.OK);
+        return new ResponseEntity<>(tutorService.listarTodos(), HttpStatus.OK);
     }
 
+    @Operation(description = "Recurso para buscar o tutor pelo id", summary = "Recurso para buscar o tutor pelo id")
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Tutor> listarPorId(@PathVariable @Valid @NotEmpty(message = "Código é obrigatório") Long id){
         return ResponseEntity.ok(tutorService.listarPorId(id));
     }
 
+    @Operation(description = "Recurso para atualizar um tutor", summary = "Recurso para atualizar um tutor")
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Tutor> atualizar(@Valid @RequestBody TutorDto tutorDto) throws JsonProcessingException {
-        Tutor tutor = mapper.readValue(ow.writeValueAsString(tutorDto), Tutor.class);
-        return ResponseEntity.ok(tutorService.atualizar(tutor));
+        return ResponseEntity.ok(tutorService.atualizar(tutorDto));
     }
 
+    @Operation(description = "Recurso para deletar um tutor", summary = "Recurso para deletar um tutor")
     @DeleteMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity deletar(@PathVariable  @Valid @NotEmpty(message = "Código é obrigatório") Long id){
         tutorService.deletar(id);

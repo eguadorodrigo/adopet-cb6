@@ -1,11 +1,13 @@
-package br.com.eguadordorigo.adopet.service;
+package br.com.eguadordorigo.adopet.service.impl;
 
 import br.com.eguadordorigo.adopet.model.Tutor;
+import br.com.eguadordorigo.adopet.model.dto.TutorDto;
 import br.com.eguadordorigo.adopet.repository.TutorRepository;
+import br.com.eguadordorigo.adopet.service.TutorService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TutorServiceImpl implements TutorService {
@@ -17,7 +19,9 @@ public class TutorServiceImpl implements TutorService {
     }
 
     @Override
-    public Tutor criar(Tutor tutor) {
+    public Tutor criar(TutorDto tutorDto) {
+        Tutor tutor = new Tutor();
+        BeanUtils.copyProperties(tutorDto, tutor);
         return tutorRepository.save(tutor);
     }
 
@@ -32,12 +36,18 @@ public class TutorServiceImpl implements TutorService {
     }
 
     @Override
-    public Tutor atualizar(Tutor tutor) {
-        Tutor usr = tutorRepository.findById(tutor.getId()).orElseThrow(()-> new RuntimeException("Não foi possível encontrar usuário."));
-        usr.setNome(tutor.getNome());
-        usr.setEmail(tutor.getEmail());
-        usr.setSenha(tutor.getSenha());
-        Tutor tutorAtual = tutorRepository.save(usr);
+    public Tutor atualizar(TutorDto tutorDto) {
+
+        Tutor tutorConvertido = new Tutor();
+        BeanUtils.copyProperties(tutorDto, tutorConvertido);
+
+        Tutor tutorTemp = tutorRepository.findById(tutorConvertido.getId()).orElseThrow(()-> new RuntimeException("Não foi possível encontrar usuário."));
+        tutorTemp.setNome(tutorConvertido.getNome());
+        tutorTemp.setEmail(tutorConvertido.getEmail());
+        tutorTemp.setSenha(tutorConvertido.getSenha());
+
+        Tutor tutorAtual = tutorRepository.save(tutorTemp);
+
         return tutorAtual;
     }
 

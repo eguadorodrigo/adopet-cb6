@@ -103,7 +103,6 @@ class TutorControllerTest {
     }
     private byte[] criarObjetoTutorParaAtualizar() throws JsonProcessingException {
         TutorDto tutorDto = new TutorDto();
-        tutorDto.setId(1l);
         tutorDto.setNome("Teste");
         tutorDto.setEmail("teste@teste.com");
         tutorDto.setSenha("Teste123");
