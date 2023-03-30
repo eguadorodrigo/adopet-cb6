@@ -1,5 +1,6 @@
-package br.com.eguadordorigo.adopet.controller;
+package br.com.eguadordorigo.adopet.auth;
 
+import br.com.eguadordorigo.adopet.model.AuthenticationResponse;
 import br.com.eguadordorigo.adopet.model.dto.AcessoDto;
 import br.com.eguadordorigo.adopet.model.dto.UsuarioDto;
 import br.com.eguadordorigo.adopet.service.UsuarioService;
@@ -15,24 +16,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Tag(name = "Recursos de Usuário", description = "Controlador dos recursos de Usuário")
-public class UsuarioController {
+@Tag(name = "Recursos de Atenticação", description = "Controlador dos recursos de autenticação")
+@RequestMapping("/api/v1/auth")
+public class AutenticacaoController {
     private UsuarioService service;
 
-    public UsuarioController(UsuarioService service, ObjectMapper mapper) {
+    public AutenticacaoController(UsuarioService service, ObjectMapper mapper) {
         this.service = service;
     }
 
-    @PostMapping("/login")
+    @PostMapping("/autenticar")
     @Operation(description = "Recurso para realizar login na aplicação")
-    public ResponseEntity<String> login(@Valid @NotEmpty(message = "Campo nome não pode ser vazio") String nome,
-                                        @Valid @NotEmpty(message = "Campo senha não pode ser vazio") String senha){
+    public ResponseEntity<AuthenticationResponse> autenticar(@Valid @NotEmpty(message = "Campo nome não pode ser vazio") String nome,
+                                                             @Valid @NotEmpty(message = "Campo senha não pode ser vazio") String senha){
         return ResponseEntity.ok(service.login(new UsuarioDto(nome, senha)));
     }
 
-    @PostMapping("/criarAcesso")
+    @PostMapping("/registrar")
     @Operation(description = "Recurso para criar o acesso na aplicação")
-    public ResponseEntity<String> criarAcesso(@Valid @RequestBody AcessoDto acessoDto){
+    public ResponseEntity<AuthenticationResponse> registrar(@Valid @RequestBody AcessoDto acessoDto){
         return ResponseEntity.ok(service.criarAcesso(acessoDto));
     }
 
