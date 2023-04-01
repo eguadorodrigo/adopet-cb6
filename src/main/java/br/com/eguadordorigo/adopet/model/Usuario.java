@@ -14,6 +14,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Entity(name = "Usuario")
@@ -37,6 +38,9 @@ public class Usuario implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
+
+    @Column(name = "expiracao")
+    private Date expiracao;
 
     public Long getId() {
         return id;
@@ -86,6 +90,14 @@ public class Usuario implements UserDetails {
         this.role = role;
     }
 
+    public Date getExpiracao() {
+        return expiracao;
+    }
+
+    public void setExpiracao(Date expiracao) {
+        this.expiracao = expiracao;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -115,21 +127,21 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return Boolean.TRUE;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return Boolean.TRUE;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return Boolean.TRUE;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return Boolean.TRUE;
     }
 }

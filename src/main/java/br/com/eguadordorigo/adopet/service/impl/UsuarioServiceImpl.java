@@ -24,7 +24,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDto, usuario);
 
-        Usuario usuarioEncontrado = repository.findExistByname(usuario.getNome()).orElseThrow(() -> new RuntimeException("Dados de usuário não encontrados."));
+        Usuario usuarioEncontrado = repository.buscarPorEmail(usuario.getEmail()).orElseThrow();
 
         if(!usuario.getSenha().equals(usuarioEncontrado.getSenha())){
             throw new RuntimeException("Acesso negado");
