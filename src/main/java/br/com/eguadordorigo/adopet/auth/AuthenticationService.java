@@ -2,15 +2,13 @@ package br.com.eguadordorigo.adopet.auth;
 
 import br.com.eguadordorigo.adopet.model.AuthenticationResponse;
 import br.com.eguadordorigo.adopet.model.Usuario;
+import br.com.eguadordorigo.adopet.model.enums.RoleEnum;
 import br.com.eguadordorigo.adopet.repository.UsuarioRepository;
 import br.com.eguadordorigo.adopet.service.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.time.Instant;
-import java.util.Date;
 
 @Service
 public class AuthenticationService {
@@ -48,7 +46,7 @@ public class AuthenticationService {
         usuario.setSobrenome(request.getNome().substring(request.getNome().indexOf(" ")));
         usuario.setEmail(request.getEmail());
         usuario.setSenha(passwordEncoder.encode(request.getSenha()));
-        usuario.setExpiracao(Date.from(Instant.now()));
+        usuario.setRole(RoleEnum.USER);
 
         usuarioRepository.save(usuario);
 

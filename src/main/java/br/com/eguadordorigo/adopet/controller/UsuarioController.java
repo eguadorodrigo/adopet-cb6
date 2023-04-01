@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsuarioController {
     private UsuarioService service;
 
-    public UsuarioController(UsuarioService service, ObjectMapper mapper) {
+    public UsuarioController(UsuarioService service) {
         this.service = service;
     }
 

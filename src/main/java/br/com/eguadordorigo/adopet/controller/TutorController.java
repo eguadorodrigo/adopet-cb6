@@ -29,13 +29,13 @@ import java.util.List;
 public class TutorController {
     private TutorService tutorService;
 
-    public TutorController(TutorService tutorService, ObjectMapper mapper) {
+    public TutorController(TutorService tutorService) {
         this.tutorService = tutorService;
     }
 
     @Operation(description = "Recurso para criação de um tutor", summary = "Recurso para criação de um tutor")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity criar(@Valid @RequestBody TutorDto tutorDto) throws JsonProcessingException {
+    public ResponseEntity criar(@Valid @RequestBody TutorDto tutorDto){
         return ResponseEntity.ok(tutorService.criar(tutorDto));
     }
 

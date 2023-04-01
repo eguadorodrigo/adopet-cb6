@@ -62,8 +62,7 @@ public class JwtService {
     }
 
     private Date extrairExpiracao(String token) {
-        extrairClaims(token, Claims::getExpiration);
-        return null;
+        return extrairClaims(token, Claims::getExpiration);
     }
 
     private Key buscarChaveDeAssinatura() {

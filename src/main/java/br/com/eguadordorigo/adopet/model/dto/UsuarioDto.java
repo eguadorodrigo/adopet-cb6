@@ -1,9 +1,12 @@
 package br.com.eguadordorigo.adopet.model.dto;
 
+import br.com.eguadordorigo.adopet.model.enums.RoleEnum;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
 public class UsuarioDto {
+
+    private Long id;
 
     @NotEmpty(message = "O campo de nome é obrigatório")
     private String nome;
@@ -17,6 +20,8 @@ public class UsuarioDto {
     @NotEmpty(message = "O campo de senha é obrigatório")
     private String senha;
 
+    private RoleEnum role;
+
     public UsuarioDto(String nome, String senha) {
         this.nome = nome;
         this.senha = senha;
@@ -24,6 +29,14 @@ public class UsuarioDto {
 
     public UsuarioDto() {
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -56,6 +69,14 @@ public class UsuarioDto {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public RoleEnum getRole() {
+        return role;
+    }
+
+    public void setRole(RoleEnum role) {
+        this.role = role;
     }
 
     @Override
