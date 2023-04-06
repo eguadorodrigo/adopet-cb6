@@ -46,7 +46,7 @@ public interface TutorService {
         @Override
         public TutorResponse listarPorId(Long id) {
             Tutor tutor = tutorRepository.findById(id).orElseThrow(()-> new RuntimeException(ConstantesExceptions.USUARIO_NAO_ENCONTRADO));
-            TutorResponse tutorResponse = new TutorResponse(ConstantesGlobais.SUCESSO_LISTAR_TUTORES_CHAVE, ConstantesGlobais.SUCESSO_LISTAR_TUTORES_VALOR);
+            TutorResponse tutorResponse = new TutorResponse(ConstantesGlobais.SUCESSO_LISTAR_TUTOR_POR_ID_CHAVE, ConstantesGlobais.SUCESSO_LISTAR_TUTOR_POR_ID_VALOR);
             tutorResponse.setEntidade(tutor);
             return tutorResponse;
         }

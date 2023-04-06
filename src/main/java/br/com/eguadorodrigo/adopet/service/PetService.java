@@ -3,18 +3,22 @@ package br.com.eguadorodrigo.adopet.service;
 import br.com.eguadorodrigo.adopet.exceptions.ConstantesExceptions;
 import br.com.eguadorodrigo.adopet.exceptions.UsuarioInexistenteException;
 import br.com.eguadorodrigo.adopet.model.ConstantesGlobais;
-import br.com.eguadorodrigo.adopet.model.Pet;
-import br.com.eguadorodrigo.adopet.model.PetResponse;
+import br.com.eguadorodrigo.adopet.model.Pets;
+import br.com.eguadorodrigo.adopet.model.PetsRequest;
+import br.com.eguadorodrigo.adopet.model.PetsResponse;
 import br.com.eguadorodrigo.adopet.repository.PetRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 public interface PetService {
 
-    PetResponse buscarTodos();
+    PetsResponse buscarTodos();
 
-    PetResponse buscarPorId(Long id);
+    PetsResponse buscarPorId(Long id);
+
+    PetsResponse cadastrar(PetsRequest petsRequest);
 
     @Service
     class PetServiceImpl implements PetService{
@@ -26,19 +30,29 @@ public interface PetService {
         }
 
         @Override
-        public PetResponse buscarTodos() {
-            List<Pet> pets = petRepository.findAll();
-            PetResponse petResponse = new PetResponse(ConstantesGlobais.SUCESSO_BUSCAR_PETS_CHAVE, ConstantesGlobais.SUCESSO_BUSCAR_PETS_VALUE);
-            petResponse.setEntidades(pets);
-            return petResponse;
+        public PetsResponse buscarTodos() {
+            List<Pets> pets = petRepository.findAll();
+            PetsResponse petsResponse = new PetsResponse(ConstantesGlobais.SUCESSO_BUSCAR_PETS_CHAVE, ConstantesGlobais.SUCESSO_BUSCAR_PETS_VALUE);
+            petsResponse.setEntidades(pets);
+            return petsResponse;
         }
 
         @Override
-        public PetResponse buscarPorId(Long id) {
-            Pet pet = petRepository.findById(id).orElseThrow(() -> new UsuarioInexistenteException(ConstantesExceptions.USUARIO_INEXISTENTE));
-            PetResponse petResponse = new PetResponse(ConstantesGlobais.SUCESSO_BUSCAR_PET_CHAVE, ConstantesGlobais.SUCESSO_BUSCAR_PET_VALUE);
-            petResponse.setEntidade(pet);
-            return petResponse;
+        public PetsResponse buscarPorId(Long id) {
+            Pets pets = petRepository.findById(id).orElseThrow(() -> new UsuarioInexistenteException(ConstantesExceptions.USUARIO_INEXISTENTE));
+            PetsResponse petsResponse = new PetsResponse(ConstantesGlobais.SUCESSO_BUSCAR_PET_CHAVE, ConstantesGlobais.SUCESSO_BUSCAR_PET_VALUE);
+            petsResponse.setEntidade(pets);
+            return petsResponse;
+        }
+
+        @Override
+        public PetsResponse cadastrar(PetsRequest petsRequest) {
+            Pets pets = new Pets();
+            BeanUtils.copyProperties(petsRequest, pets);
+            petRepository.save(pets);
+            PetsResponse petsResponse = new PetsResponse(ConstantesGlobais.SUCESSO_CADASTRAR_PET_CHAVE,ConstantesGlobais.SUCESSO_CADASTRAR_PET_VALOR);
+            petsResponse.setEntidade(pets);
+            return petsResponse;
         }
     }
 }

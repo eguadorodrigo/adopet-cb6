@@ -4,21 +4,24 @@ import java.util.List;
 
 public abstract class CustomBaseResponse<T>{
 
-    private Integer apiCode;
+    private String apiCode;
     private String message;
     private T entidade;
     private List<T> entidades;
 
-    public CustomBaseResponse(String message, Integer apiCode) {
-        this.message = message;
+    public CustomBaseResponse(String apiCode, String message) {
         this.apiCode = apiCode;
+        this.message = message;
     }
 
-    public Integer getApiCode() {
+    public CustomBaseResponse() {
+    }
+
+    public String getApiCode() {
         return apiCode;
     }
 
-    public void setApiCode(Integer apiCode) {
+    public void setApiCode(String apiCode) {
         this.apiCode = apiCode;
     }
 
