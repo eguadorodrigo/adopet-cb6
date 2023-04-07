@@ -3,7 +3,6 @@ package br.com.eguadorodrigo.adopet.controller;
 import br.com.eguadorodrigo.adopet.model.TutorRequest;
 import br.com.eguadorodrigo.adopet.model.TutorResponse;
 import br.com.eguadorodrigo.adopet.service.TutorService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SecurityRequirement(name = "bearerAuth")
 @Tag(name = "Recurso de Tutores", description = "Controlador dos recursos de Tutor")
 public class TutorController {
-    private TutorService tutorService;
+    private final TutorService tutorService;
 
     public TutorController(TutorService tutorService) {
         this.tutorService = tutorService;
@@ -51,7 +50,7 @@ public class TutorController {
 
     @Operation(description = "Recurso para atualizar um tutor", summary = "Recurso para atualizar um tutor")
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TutorResponse> atualizar(@Valid @RequestBody TutorRequest tutorRequest) throws JsonProcessingException {
+    public ResponseEntity<TutorResponse> atualizar(@Valid @RequestBody TutorRequest tutorRequest) {
         return ResponseEntity.ok(tutorService.atualizar(tutorRequest));
     }
 
