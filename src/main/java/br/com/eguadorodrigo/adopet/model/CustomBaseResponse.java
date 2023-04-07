@@ -6,8 +6,8 @@ public abstract class CustomBaseResponse<T>{
 
     private String apiCode;
     private String message;
-    private T entidade;
-    private List<T> entidades;
+    private T entity;
+    private List<T> entities;
 
     public CustomBaseResponse(String apiCode, String message) {
         this.apiCode = apiCode;
@@ -33,19 +33,19 @@ public abstract class CustomBaseResponse<T>{
         this.message = message;
     }
 
-    public T getEntidade() {
-        return entidade;
+    public T getEntity() {
+        return entity;
     }
 
-    public void setEntidade(T entidade) {
-        this.entidade = entidade;
+    public void setEntity(T entity) {
+        this.entity = entity;
     }
 
-    public List<T> getEntidades() {
-        return entidades;
+    public List<T> getEntities() {
+        return entities;
     }
 
-    public void setEntidades(List<T> entidades) {
-        this.entidades = entidades;
+    public void setEntities(List<T> entities) {
+        this.entities = entities;
     }
 }
