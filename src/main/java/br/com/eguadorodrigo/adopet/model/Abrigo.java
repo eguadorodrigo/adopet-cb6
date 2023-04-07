@@ -8,9 +8,11 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
-@Entity
+@Entity(name = "Abrigo")
 @Table(name = "tb_abrigo", schema = "CB6")
 public class Abrigo {
 
@@ -30,6 +32,10 @@ public class Abrigo {
 
     @Column(name = "descricao", length = 200, nullable = false)
     private String descricao;
+
+    @OneToOne
+    @PrimaryKeyJoinColumn(name = "id")
+    Pet pet;
 
     public Abrigo(Long id, String nome, String telefone, CidadeEnum cidade, String descricao) {
         this.id = id;
