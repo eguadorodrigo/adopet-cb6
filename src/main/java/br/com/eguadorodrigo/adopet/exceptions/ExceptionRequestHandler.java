@@ -31,4 +31,22 @@ public class ExceptionRequestHandler extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(apiErrorMessage, new HttpHeaders(), apiErrorMessage.getStatus());
     }
+
+    @ExceptionHandler(AbrigoInexistenteException.class)
+    public ResponseEntity<Object> lidandoComAbrigoInexistente(
+            AbrigoInexistenteException exception, WebRequest request) {
+
+        ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.FORBIDDEN, Collections.singletonList(exception.getMessage()));
+
+        return new ResponseEntity<>(apiErrorMessage, new HttpHeaders(), apiErrorMessage.getStatus());
+    }
+
+    @ExceptionHandler(PetInexistenteException.class)
+    public ResponseEntity<Object> lidandoComPetInexistente(
+            PetInexistenteException exception, WebRequest request) {
+
+        ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.FORBIDDEN, Collections.singletonList(exception.getMessage()));
+
+        return new ResponseEntity<>(apiErrorMessage, new HttpHeaders(), apiErrorMessage.getStatus());
+    }
 }
