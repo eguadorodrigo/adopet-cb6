@@ -39,7 +39,7 @@ public interface TutorService {
             BeanUtils.copyProperties(tutorRequest, tutor);
             tutorRepository.save(tutor);
             TutorResponse tutorResponse = new TutorResponse(ConstantesGlobais.SUCESSO_CRIAR_TUTOR_CHAVE, ConstantesGlobais.SUCESSO_CRIAR_TUTOR_VALOR);
-            tutorResponse.setEntidade(tutor);
+            tutorResponse.setEntity(tutor);
             return tutorResponse;
         }
 
@@ -47,14 +47,14 @@ public interface TutorService {
         public TutorResponse listarPorId(Long id) {
             Tutor tutor = tutorRepository.findById(id).orElseThrow(()-> new RuntimeException(ConstantesExceptions.USUARIO_NAO_ENCONTRADO));
             TutorResponse tutorResponse = new TutorResponse(ConstantesGlobais.SUCESSO_LISTAR_TUTOR_POR_ID_CHAVE, ConstantesGlobais.SUCESSO_LISTAR_TUTOR_POR_ID_VALOR);
-            tutorResponse.setEntidade(tutor);
+            tutorResponse.setEntity(tutor);
             return tutorResponse;
         }
 
         @Override
         public TutorResponse listarTodos() {
             TutorResponse tutorResponse = new TutorResponse(ConstantesGlobais.SUCESSO_LISTAR_TUTORES_CHAVE, ConstantesGlobais.SUCESSO_LISTAR_TUTORES_VALOR);
-            tutorResponse.setEntidades(tutorRepository.findAll());
+            tutorResponse.setEntities(tutorRepository.findAll());
             return tutorResponse;
         }
 
@@ -74,7 +74,7 @@ public interface TutorService {
             Tutor tutorAtual = tutorRepository.save(tutorTemp);
 
             TutorResponse tutorResponse = new TutorResponse(ConstantesGlobais.SUCESSO_ATUALIZAR_TUTOR_CHAVE, ConstantesGlobais.SUCESSO_ATUALIZAR_TUTOR_VALOR);
-            tutorResponse.setEntidade(tutorAtual);
+            tutorResponse.setEntity(tutorAtual);
 
             return tutorResponse;
         }
