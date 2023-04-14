@@ -1,19 +1,25 @@
 package br.com.eguadorodrigo.adopet.service;
 
 import br.com.eguadorodrigo.adopet.exceptions.AbrigoInexistenteException;
-import br.com.eguadorodrigo.adopet.exceptions.ConstantesExceptions;
+import br.com.eguadorodrigo.adopet.exceptions.CidadeInexistenteException;
+import br.com.eguadorodrigo.adopet.model.contants.ConstantesExceptions;
 import br.com.eguadorodrigo.adopet.exceptions.PetInexistenteException;
+import br.com.eguadorodrigo.adopet.exceptions.TutorInexistenteException;
 import br.com.eguadorodrigo.adopet.exceptions.UsuarioInexistenteException;
-import br.com.eguadorodrigo.adopet.model.Abrigo;
-import br.com.eguadorodrigo.adopet.model.ConstantesGlobais;
-import br.com.eguadorodrigo.adopet.model.Pet;
-import br.com.eguadorodrigo.adopet.model.PetRequest;
-import br.com.eguadorodrigo.adopet.model.PetResponse;
+import br.com.eguadorodrigo.adopet.model.entities.Abrigo;
+import br.com.eguadorodrigo.adopet.model.contants.ConstantesGlobais;
+import br.com.eguadorodrigo.adopet.model.entities.Pet;
+import br.com.eguadorodrigo.adopet.model.request.PetRequest;
+import br.com.eguadorodrigo.adopet.model.response.PetResponse;
+import br.com.eguadorodrigo.adopet.repository.AbrigoRepository;
+import br.com.eguadorodrigo.adopet.repository.CidadeRepository;
 import br.com.eguadorodrigo.adopet.repository.PetRepository;
+import br.com.eguadorodrigo.adopet.repository.TutorRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 public interface PetService {
 
@@ -31,9 +37,15 @@ public interface PetService {
 
         private final AbrigoRepository abrigoRepository;
 
-        public PetServiceImpl(PetRepository petRepository, AbrigoRepository abrigoRepository) {
+        private final CidadeRepository cidadeRepository;
+
+        private final TutorRepository tutorRepository;
+
+        public PetServiceImpl(PetRepository petRepository, AbrigoRepository abrigoRepository, CidadeRepository cidadeRepository, TutorRepository tutorRepository) {
             this.petRepository = petRepository;
             this.abrigoRepository = abrigoRepository;
+            this.cidadeRepository = cidadeRepository;
+            this.tutorRepository = tutorRepository;
         }
 
         @Override
@@ -74,11 +86,27 @@ public interface PetService {
 
         @Override
         public PetResponse atualizarParcial(PetRequest request) {
-            Pet pet = petRepository
+            Pet petEncontrado = petRepository
                     .findById(request.getId())
                     .orElseThrow(() -> new PetInexistenteException(ConstantesExceptions.PET_NAO_ENCONTRADO));
-            Pet petAtualizado = petRepository.save(pet.requestToPet(request));
-            return new PetResponse(ConstantesGlobais.SUCESSO_ATUALIZAR_PET_PARCIAL_CHAVE, petAtualizado, null);
+
+            petEncontrado.setNome(request.getNome());
+            petEncontrado.setDescricao(request.getDescricao());
+            petEncontrado.setAdotado(request.getAdotado());
+            petEncontrado.setIdade(request.getIdade());
+            if(!Objects.equals(petEncontrado.getCidade().getId(),request.getCidadeId()))
+                petEncontrado.setCidade(cidadeRepository.findById(request.getCidadeId()).orElseThrow(()-> new CidadeInexistenteException(ConstantesExceptions.CIDADE_NAO_ENCOTRADA)));
+
+            petEncontrado.setPorte(request.getPorte());
+            petEncontrado.setImagem(request.getImagem());
+
+            if(!Objects.equals(petEncontrado.getAbrigo().getId(), request.getAbrigoId()))
+                petEncontrado.setAbrigo(abrigoRepository.findById(request.getAbrigoId()).orElseThrow(()-> new AbrigoInexistenteException(ConstantesExceptions.ABRIGO_NAO_ENCONTRADO)));
+
+            if(!Objects.equals(petEncontrado.getTutor().getId(), request.getTutorId()))
+                petEncontrado.setTutor(tutorRepository.findById(request.getTutorId()).orElseThrow(()-> new TutorInexistenteException(ConstantesExceptions.USUARIO_INEXISTENTE)));
+
+            return new PetResponse(ConstantesGlobais.SUCESSO_ATUALIZAR_PET_PARCIAL_CHAVE, petRepository.save(petEncontrado), null);
         }
 
         @Override

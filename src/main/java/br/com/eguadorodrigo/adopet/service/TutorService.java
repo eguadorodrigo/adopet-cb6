@@ -1,10 +1,10 @@
 package br.com.eguadorodrigo.adopet.service;
 
-import br.com.eguadorodrigo.adopet.exceptions.ConstantesExceptions;
-import br.com.eguadorodrigo.adopet.model.ConstantesGlobais;
-import br.com.eguadorodrigo.adopet.model.Tutor;
-import br.com.eguadorodrigo.adopet.model.TutorRequest;
-import br.com.eguadorodrigo.adopet.model.TutorResponse;
+import br.com.eguadorodrigo.adopet.model.contants.ConstantesExceptions;
+import br.com.eguadorodrigo.adopet.model.contants.ConstantesGlobais;
+import br.com.eguadorodrigo.adopet.model.entities.Tutor;
+import br.com.eguadorodrigo.adopet.model.request.TutorRequest;
+import br.com.eguadorodrigo.adopet.model.response.TutorResponse;
 import br.com.eguadorodrigo.adopet.repository.TutorRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;

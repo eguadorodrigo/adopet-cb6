@@ -1,7 +1,7 @@
 package br.com.eguadorodrigo.adopet.controller;
 
-import br.com.eguadorodrigo.adopet.model.PetRequest;
-import br.com.eguadorodrigo.adopet.model.PetResponse;
+import br.com.eguadorodrigo.adopet.model.request.PetRequest;
+import br.com.eguadorodrigo.adopet.model.response.PetResponse;
 import br.com.eguadorodrigo.adopet.service.PetService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

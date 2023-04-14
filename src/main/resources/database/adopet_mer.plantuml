@@ -1,0 +1,56 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class tb_abrigo {
+   descricao: varchar(200)
+   nome: varchar(50)
+   telefone: varchar(50)
+   cidade_id: bigint
+   id: bigint
+}
+class tb_adocao {
+   data: datetime(6)
+   animal_id: bigint
+   tutor_id: bigint
+   id: binary(16)
+}
+class tb_cidade {
+   nome: varchar(255)
+   sigla: varchar(255)
+   id: bigint
+}
+class tb_pet {
+   adotado: bit(1)
+   descricao: varchar(150)
+   idade: int
+   imagem: varchar(200)
+   nome: varchar(50)
+   porte: varchar(255)
+   abrigo_id: bigint
+   adocao_id: binary(16)
+   cidade_id: bigint
+   tutor_id: bigint
+   id: bigint
+}
+class tb_usuario {
+   dtype: varchar(31)
+   email: varchar(255)
+   expiracao: datetime(6)
+   nome: varchar(255)
+   role: varchar(255)
+   senha: varchar(255)
+   sobrenome: varchar(255)
+   id: bigint
+}
+
+tb_abrigo   -[#595959,plain]-^  tb_cidade  : "cidade_id:id"
+tb_adocao   -[#595959,plain]-^  tb_pet     : "animal_id:id"
+tb_adocao   -[#595959,plain]-^  tb_usuario : "tutor_id:id"
+tb_pet      -[#595959,plain]-^  tb_abrigo  : "abrigo_id:id"
+tb_pet      -[#595959,plain]-^  tb_adocao  : "adocao_id:id"
+tb_pet      -[#595959,plain]-^  tb_cidade  : "cidade_id:id"
+tb_pet      -[#595959,plain]-^  tb_usuario : "tutor_id:id"
+@enduml

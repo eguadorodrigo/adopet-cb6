@@ -1,4 +1,4 @@
-package br.com.eguadorodrigo.adopet.model;
+package br.com.eguadorodrigo.adopet.model.contants;
 
 public class ConstantesGlobais {
 
@@ -36,11 +36,12 @@ public class ConstantesGlobais {
     public static final String SUCESSO_ATUALIZAR_ABRIGO_VALOR = "0014";
     public static final String SUCESSO_ATUALIZAR_ABRIGO_PARCIAL_CHAVE = "Abrigo parcialmente atualizado";
     public static final String SUCESSO_ATUALIZAR_ABRIGO_PARCIAL_VALOR = "0015";
-
     public static final String SUCESSO_DELETAR_ABRIGO_VALOR = "Abrigo deletado";
-
     public static final String SUCESSO_DELETAR_ABRIGO_CHAVE = "0016";
-
-
-
+    public static final String SUCESSO_LISTAR_ADOCAO_CHAVE = "Lista de adoções consultada com sucesso";
+    public static final String SUCESSO_LISTAR_ADOCAO_VALOR = "0017";
+    public static final String SUCESSO_CADASTRAR_ADOCAO_CHAVE = "Adoção cadastrada com sucesso";
+    public static final String SUCESSO_CADASTRAR_ADOCAO_VALOR = "0018";
+    public static final String SUCESSO_CADASTRAR_CIDADE_CHAVE = "Cidade cadastrada com sucesso";
+    public static final String SUCESSO_CADASTRAR_CIDADE_VALOR = "0019";
 }

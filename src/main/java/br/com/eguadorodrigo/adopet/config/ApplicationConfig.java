@@ -1,6 +1,6 @@
 package br.com.eguadorodrigo.adopet.config;
 
-import br.com.eguadorodrigo.adopet.exceptions.ConstantesExceptions;
+import br.com.eguadorodrigo.adopet.model.contants.ConstantesExceptions;
 import br.com.eguadorodrigo.adopet.repository.UsuarioRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

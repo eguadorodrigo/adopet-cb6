@@ -1,4 +1,4 @@
-package br.com.eguadorodrigo.adopet.exceptions;
+package br.com.eguadorodrigo.adopet.model.exceptions;
 
 import org.springframework.http.HttpStatus;
 

@@ -1,9 +1,9 @@
 package br.com.eguadorodrigo.adopet.service;
 
-import br.com.eguadorodrigo.adopet.model.AutenticacaoRequest;
-import br.com.eguadorodrigo.adopet.model.AutenticacaoResponse;
-import br.com.eguadorodrigo.adopet.model.RegistroRequest;
-import br.com.eguadorodrigo.adopet.model.Usuario;
+import br.com.eguadorodrigo.adopet.model.request.AutenticacaoRequest;
+import br.com.eguadorodrigo.adopet.model.response.AutenticacaoResponse;
+import br.com.eguadorodrigo.adopet.model.request.RegistroRequest;
+import br.com.eguadorodrigo.adopet.model.entities.Usuario;
 import br.com.eguadorodrigo.adopet.model.enums.RoleEnum;
 import br.com.eguadorodrigo.adopet.repository.UsuarioRepository;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,4 +1,4 @@
-package br.com.eguadorodrigo.adopet.model;
+package br.com.eguadorodrigo.adopet.model.response;
 
 public class AutenticacaoResponse {
 

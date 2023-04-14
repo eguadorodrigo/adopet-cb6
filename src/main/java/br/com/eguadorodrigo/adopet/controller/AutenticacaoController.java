@@ -1,8 +1,8 @@
 package br.com.eguadorodrigo.adopet.controller;
 
-import br.com.eguadorodrigo.adopet.model.AutenticacaoRequest;
-import br.com.eguadorodrigo.adopet.model.AutenticacaoResponse;
-import br.com.eguadorodrigo.adopet.model.RegistroRequest;
+import br.com.eguadorodrigo.adopet.model.request.AutenticacaoRequest;
+import br.com.eguadorodrigo.adopet.model.response.AutenticacaoResponse;
+import br.com.eguadorodrigo.adopet.model.request.RegistroRequest;
 import br.com.eguadorodrigo.adopet.service.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

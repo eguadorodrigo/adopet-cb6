@@ -1,4 +1,4 @@
-package br.com.eguadorodrigo.adopet.model;
+package br.com.eguadorodrigo.adopet.model.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity(name = "Cidade")
+@Entity(name = "CIDADE")
 @Table(name = "tb_cidade", schema = "CB6")
 public class Cidade {
 

@@ -1,7 +1,7 @@
 package br.com.eguadorodrigo.adopet.controller;
 
-import br.com.eguadorodrigo.adopet.model.TutorRequest;
-import br.com.eguadorodrigo.adopet.model.TutorResponse;
+import br.com.eguadorodrigo.adopet.model.request.TutorRequest;
+import br.com.eguadorodrigo.adopet.model.response.TutorResponse;
 import br.com.eguadorodrigo.adopet.service.TutorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

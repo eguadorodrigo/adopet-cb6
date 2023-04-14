@@ -1,7 +1,7 @@
 package br.com.eguadorodrigo.adopet.controller;
 
-import br.com.eguadorodrigo.adopet.model.ConstantesGlobais;
-import br.com.eguadorodrigo.adopet.model.TutorResponse;
+import br.com.eguadorodrigo.adopet.model.contants.ConstantesGlobais;
+import br.com.eguadorodrigo.adopet.model.response.TutorResponse;
 import br.com.eguadorodrigo.adopet.service.TutorService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

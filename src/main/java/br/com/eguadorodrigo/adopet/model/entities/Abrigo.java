@@ -1,18 +1,16 @@
-package br.com.eguadorodrigo.adopet.model;
+package br.com.eguadorodrigo.adopet.model.entities;
 
-import br.com.eguadorodrigo.adopet.model.enums.CidadeEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-@Entity(name = "Abrigo")
+@Entity(name = "ABRIGO")
 @Table(name = "tb_abrigo", schema = "CB6")
 public class Abrigo {
 
@@ -26,27 +24,12 @@ public class Abrigo {
     @Column(name = "telefone", length = 50, nullable = false)
     private String telefone;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "cidade")
-    private CidadeEnum cidade;
+    @ManyToOne
+    @JoinColumn(name = "cidade_id", foreignKey = @ForeignKey(name = "Fk_abrigo_cidade"))
+    private Cidade cidade;
 
     @Column(name = "descricao", length = 200, nullable = false)
     private String descricao;
-
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "id")
-    Pet pet;
-
-    public Abrigo(Long id, String nome, String telefone, CidadeEnum cidade, String descricao) {
-        this.id = id;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.cidade = cidade;
-        this.descricao = descricao;
-    }
-
-    public Abrigo() {
-    }
 
     public Long getId() {
         return id;
@@ -72,14 +55,13 @@ public class Abrigo {
         this.telefone = telefone;
     }
 
-    public CidadeEnum getCidade() {
+    public Cidade getCidade() {
         return cidade;
     }
 
-    public void setCidade(CidadeEnum cidade) {
+    public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
-
     public String getDescricao() {
         return descricao;
     }

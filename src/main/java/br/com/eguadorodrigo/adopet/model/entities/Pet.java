@@ -1,18 +1,19 @@
-package br.com.eguadorodrigo.adopet.model;
+package br.com.eguadorodrigo.adopet.model.entities;
 
-import br.com.eguadorodrigo.adopet.model.enums.CidadeEnum;
 import br.com.eguadorodrigo.adopet.model.enums.PorteEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-@Entity(name = "Pet")
+@Entity(name = "PET")
 @Table(name = "tb_pet", schema = "CB6")
 public class Pet {
 
@@ -32,8 +33,9 @@ public class Pet {
     @Column(name = "idade", length = 3)
     private Integer idade;
 
-    @Enumerated(EnumType.STRING)
-    private CidadeEnum cidade;
+    @ManyToOne
+    @JoinColumn(name = "cidade_id", foreignKey = @ForeignKey(name = "Fk_pet_cidade"))
+    private Cidade cidade;
 
     @Enumerated(EnumType.STRING)
     private PorteEnum porte;
@@ -41,13 +43,22 @@ public class Pet {
     @Column(name = "imagem", length = 200, nullable = true)
     private String imagem;
 
-    @OneToOne(mappedBy = "pet")
+    @ManyToOne
+    @JoinColumn(name = "abrigo_id",foreignKey = @ForeignKey(name = "Fk_pet_abrigo"))
     private Abrigo abrigo;
+
+    @ManyToOne
+    @JoinColumn(name = "adocao_id", foreignKey = @ForeignKey(name = "Fk_pet_adocao"))
+    private Adocao adocao;
+
+    @ManyToOne
+    @JoinColumn(name = "tutor_id",foreignKey = @ForeignKey(name = "Fk_pet_tutor"))
+    private Tutor tutor;
 
     public Pet() {
     }
 
-    public Pet(Long id, String nome, String descricao, Boolean adotado, Integer idade, CidadeEnum cidade, PorteEnum porte, String imagem) {
+    public Pet(Long id, String nome, String descricao, Boolean adotado, Integer idade, Cidade cidade, PorteEnum porte, String imagem, Tutor tutor) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -56,6 +67,7 @@ public class Pet {
         this.cidade = cidade;
         this.porte = porte;
         this.imagem = imagem;
+        this.tutor = tutor;
     }
 
     public Long getId() {
@@ -98,11 +110,11 @@ public class Pet {
         this.idade = idade;
     }
 
-    public CidadeEnum getCidade() {
+    public Cidade getCidade() {
         return cidade;
     }
 
-    public void setCidade(CidadeEnum cidade) {
+    public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
 
@@ -130,28 +142,19 @@ public class Pet {
         this.abrigo = abrigo;
     }
 
-    public Pet requestToPet(PetRequest request){
-        if(request.getNome() != null){
-            this.nome = request.getNome();
-        }
-        if(request.getDescricao() != null){
-            this.descricao = request.getDescricao();
-        }
-        if(request.getIdade() != null){
-            this.idade = request.getIdade();
-        }
-        if(request.getPorte() != null){
-            this.porte  = request.getPorte();
-        }
-        if(request.getAdotado() != null){
-            this.adotado = request.getAdotado();
-        }
-        if(request.getImagem() != null){
-            this.imagem = request.getImagem();
-        }
-        if(request.getCidade() != null){
-            this.cidade = request.getCidade();
-        }
-        return this;
+    public Adocao getAdocao() {
+        return adocao;
+    }
+
+    public void setAdocao(Adocao adocao) {
+        this.adocao = adocao;
+    }
+
+    public Tutor getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
     }
 }

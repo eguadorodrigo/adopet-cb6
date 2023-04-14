@@ -1,6 +1,5 @@
-package br.com.eguadorodrigo.adopet.model;
+package br.com.eguadorodrigo.adopet.model.request;
 
-import br.com.eguadorodrigo.adopet.model.enums.CidadeEnum;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -14,18 +13,13 @@ public class AbrigoRequest {
     @NotEmpty(message = "O campo telefone deve ser informado.")
     private String telefone;
 
-    @NotNull
-    private CidadeEnum cidade;
+    @NotNull(message = "O campo cidade é obrigatório")
+    private Long cidadeId;
 
     @NotEmpty(message = "O campo descricao deve ser informado.")
     private String descricao;
 
-    public AbrigoRequest(Long id, String nome, String telefone, CidadeEnum cidade, String descricao) {
-        this.id = id;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.cidade = cidade;
-        this.descricao = descricao;
+    public AbrigoRequest() {
     }
 
     public Long getId() {
@@ -52,12 +46,12 @@ public class AbrigoRequest {
         this.telefone = telefone;
     }
 
-    public CidadeEnum getCidade() {
-        return cidade;
+    public Long getCidadeId() {
+        return cidadeId;
     }
 
-    public void setCidade(CidadeEnum cidade) {
-        this.cidade = cidade;
+    public void setCidadeId(Long cidadeId) {
+        this.cidadeId = cidadeId;
     }
 
     public String getDescricao() {

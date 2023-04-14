@@ -1,4 +1,4 @@
-package br.com.eguadorodrigo.adopet.model;
+package br.com.eguadorodrigo.adopet.model.entities;
 
 import br.com.eguadorodrigo.adopet.model.enums.RoleEnum;
 import jakarta.persistence.Column;
@@ -17,7 +17,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-@Entity(name = "Usuario")
+@Entity(name = "USUARIO")
 @Table(name = "tb_usuario", schema = "CB6")
 public class Usuario implements UserDetails {
     @Id

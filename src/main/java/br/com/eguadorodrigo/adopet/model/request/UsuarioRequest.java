@@ -1,4 +1,4 @@
-package br.com.eguadorodrigo.adopet.model;
+package br.com.eguadorodrigo.adopet.model.request;
 
 import br.com.eguadorodrigo.adopet.model.enums.RoleEnum;
 import jakarta.validation.constraints.Email;
